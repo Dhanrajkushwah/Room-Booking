@@ -1,0 +1,92 @@
+<div class="container mt-5">
+  <div class="row mt-5">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <div class="card my-5 shadow-lg" style="height: 555px !important;">
+            <form class="card-body cardbody-color p-lg-3">
+              <h2 class="text-left">Available Rooms</h2>
+              <hr>
+              <div class="mb-3 mt-3 pt-4">
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let room of rooms">
+                    <span>{{ room.name }} (Available: {{ room.available }})</span>
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card my-5 shadow-lg">
+            <form [formGroup]="bookingForm" class="card-body cardbody-color p-lg-3">
+              <h2 class="text-left">Book Room</h2>
+              <hr>
+              <div class="mb-3">
+                <label for="room">Room</label>
+                <select id="room" formControlName="room" class="form-control" required [ngClass]="{'is-invalid': bookingForm.controls['room'].errors && ckDep }">
+                  <option *ngFor="let room of rooms" [value]="room.name">
+                    {{ room.name }} (Available: {{ room.available }})
+                  </option>
+                </select>
+                <small *ngIf="bookingForm.controls['room'].errors && ckDep" class="text-danger">Please select a room</small>
+              </div>
+              <div class="mb-3">
+                <label for="date">Date</label>
+                <input type="date" id="date" formControlName="date" class="form-control" required [ngClass]="{'is-invalid': bookingForm.controls['date'].errors && ckDep }">
+                <small *ngIf="bookingForm.controls['date'].errors && ckDep" class="text-danger">Please enter a date</small>
+              </div>
+              <div class="mb-3">
+                <label for="startTime">Start Time</label>
+                <input type="time" id="startTime" formControlName="startTime" class="form-control" required [ngClass]="{'is-invalid': bookingForm.controls['startTime'].errors && ckDep }">
+                <small *ngIf="bookingForm.controls['startTime'].errors && ckDep" class="text-danger">Please enter a start time</small>
+              </div>
+              <div class="mb-3">
+                <label for="endTime">End Time</label>
+                <input type="time" id="endTime" formControlName="endTime" class="form-control" required [ngClass]="{'is-invalid': bookingForm.controls['endTime'].errors && ckDep }">
+                <small *ngIf="bookingForm.controls['endTime'].errors && ckDep" class="text-danger">Please enter an end time</small>
+              </div>
+              <div class="mb-3">
+                <label for="title">Meeting Title</label>
+                <input type="text" id="title" formControlName="title" class="form-control" required [ngClass]="{'is-invalid': bookingForm.controls['title'].errors && ckDep }">
+                <small *ngIf="bookingForm.controls['title'].errors && ckDep" class="text-danger">Please enter a meeting title</small>
+              </div>
+              <button *ngIf="!isEdit" type="submit" class="btn btn-primary btn-color px-5 mb-2 w-100" (click)="bookRoom()">Book Room</button>
+              <button *ngIf="isEdit" type="button" class="btn btn-primary btn-color px-5 mb-2 w-100" (click)="updateBooking()">Update Booking</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div><h2>Your Booking</h2></div>
+    <hr>
+    <table class="table table-striped table-hover mt-2 mb-5 pb-2" id="table" #content>
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Room</th>
+          <th scope="col">Date</th>
+          <th scope="col">Start Time</th>
+          <th scope="col">End Time</th>
+          <th scope="col">Meeting Title</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.date }}</td>
+          <td>{{ booking.startTime }}</td>
+          <td>{{ booking.endTime }}</td>
+          <td>{{ booking.title }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="editBooking(i)">Edit</button>&nbsp;
+            <button class="btn btn-sm btn-danger" (click)="deleteBooking(i)">Delete</button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

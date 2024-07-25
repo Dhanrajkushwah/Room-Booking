@@ -1,0 +1,52 @@
+.card {
+  border-radius: 15px;
+  background-color: #f8f9fa;
+}
+
+.cardbody-color {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.btn-color {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-color:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.text-danger {
+  font-size: 0.875rem;
+}
+
+.table {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
